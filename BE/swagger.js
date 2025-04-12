@@ -9,11 +9,6 @@ const options = {
       version: "1.0.0",
       description: "API for a simple TODO app with authentication",
     },
-    servers: [
-      {
-        url: "http://localhost:3001",
-      },
-    ],
 
     components: {
       securitySchemes: {

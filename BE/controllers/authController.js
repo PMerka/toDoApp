@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 exports.register = async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(req);
     const existing = await prisma.user.findUnique({ where: { email } });
     if (existing) return res.status(400).json({ message: "User exists" });
 
@@ -13,7 +12,6 @@ exports.register = async (req, res) => {
     const user = await prisma.user.create({
       data: { email, password: hashed },
     });
-    console.log(user);
 
     res.json({ token: jwt.sign(user.id) });
   } catch (error) {
