@@ -7,7 +7,6 @@ services:
     ports:
       - "3001:3001"
     volumes:
-      - ./BE:/app
       - ./data/sqlite:/app/prisma/data
     env_file:
       - ./BE/.env
