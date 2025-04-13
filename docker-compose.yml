@@ -11,3 +11,10 @@ services:
     env_file:
       - ./BE/.env
     restart: unless-stopped
+
+  frontend:
+    build: ./FE
+    container_name: todo-frontend
+    ports:
+      - "3000:80" # port 80 in container served by nginx -> exposed on 3000
+    restart: unless-stopped
