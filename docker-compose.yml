@@ -13,7 +13,11 @@ services:
     restart: unless-stopped
 
   backend:
-    build: ./BE
+    build:
+      context: ./BE
+      args:
+        DATABASE_URL: "file:./dev.db"
+        JWT_SECRET: ${JWT_SECRET}
     container_name: todo-backend
     ports:
       - "3001:3001"
