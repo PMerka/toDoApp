@@ -22,10 +22,11 @@ services:
     ports:
       - "3001:3001"
     volumes:
-      - sqlite-data:/app/prisma/data
+      - sqlite_data:/app/prisma/data
     env_file:
       - ./BE/.env
     restart: unless-stopped
 
 volumes:
-  sqlite-data:
+  sqlite_data:
+    name: sqlite_data
