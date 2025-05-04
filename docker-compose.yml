@@ -4,9 +4,9 @@ services:
   frontend:
     build:
       context: ./FE
-      #args:
+      args:
       # env variables for FE
-      #VITE_BASE_URL: "http://localhost:3001/"
+      VITE_BASE_URL: "http://localhost:3001/"
     container_name: todo-frontend
     ports:
       - "3000:80" # port 80 in container served by nginx -> exposed on 3000
