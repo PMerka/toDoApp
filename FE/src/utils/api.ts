@@ -5,6 +5,7 @@ const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 if (!BASE_URL) {
   console.error("missing BASE_URL");
+  console.log("meta.env", import.meta.env);
 }
 
 export const axiosClient = axios.create({
