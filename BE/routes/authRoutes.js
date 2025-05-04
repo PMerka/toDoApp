@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
+const auth = require("../middlewares/authMiddleware");
 
 /**
  * @swagger
@@ -46,5 +47,13 @@ router.post("/register", authController.register);
  *         description: User already exists
  */
 router.post("/login", authController.login);
+/**
+ * @swagger
+ * /auth/user:
+ *   get:
+ *     summary: Get current user
+ *     tags: [Auth]
+ */
+router.get("/user", auth, authController.user);
 
 module.exports = router;

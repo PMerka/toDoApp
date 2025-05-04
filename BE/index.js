@@ -1,14 +1,20 @@
-require("dotenv").config();
 const express = require("express");
 
 const authRoutes = require("./routes/authRoutes");
 const todoRoutes = require("./routes/todoRoutes");
+const cors = require("cors");
+
+const checkEnvs = require("./utils/checkEnvs");
+const havingEnvs = checkEnvs();
+if (!havingEnvs) {
+  throw new Error("Missing env variables. Check .env file.");
+}
 
 const app = express();
 
 const setupSwagger = require("./swagger");
 
-app.use(express.json());
+app.use(express.json(), cors());
 setupSwagger(app);
 
 app.use("/auth", authRoutes);
