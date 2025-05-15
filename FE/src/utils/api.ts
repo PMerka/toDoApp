@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getCookie } from "./cookies";
+import { jwtManager } from "./jwtManager";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -13,6 +13,6 @@ export const axiosClient = axios.create({
   timeout: 1000,
   headers: {
     "X-Custom-Header": "foobar",
-    Authorization: `Bearer ${getCookie("jwt")}`,
+    Authorization: `Bearer ${jwtManager.getJwt()}`,
   },
 });

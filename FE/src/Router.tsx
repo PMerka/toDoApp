@@ -1,18 +1,23 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import Home from "./routes/Home/Home";
-import Login from "./routes/Login/Login";
+import Home from "./pages/Home/Home";
+import Login from "./pages/Login/Login";
 import { useGetUserQuery } from "./hooks/useGetUserQuery";
+import MainLayout from "./layouts/MainLayout/MainLayout";
+import { routes } from "./pages/routes";
+import Logout from "./pages/Logout/Logout";
 
 function App() {
   const userQuery = useGetUserQuery();
-  const userData = userQuery?.data;
+
   return (
     <>
       <BrowserRouter>
-        <div>Welcome: {userData?.email}</div>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/auth" element={<Login />} />
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<Home />} />
+            <Route path={routes.login} element={<Login />} />
+            <Route path={routes.logout} element={<Logout />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

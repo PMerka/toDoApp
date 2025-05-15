@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { axiosClient } from "../utils/api";
 import { PATHS } from "./paths";
-import { setCookie } from "../utils/cookies";
+import { jwtManager } from "../utils/jwtManager";
 
 export interface LoginArgs {
   email?: string;
@@ -11,7 +11,7 @@ export interface LoginArgs {
 const login = async (args: LoginArgs) => {
   const resp = await axiosClient.post(PATHS.auth.login, args);
   const data = await resp?.data;
-  setCookie("jwt", data.token);
+  jwtManager.setJwt(data?.token);
 
   console.log(data);
   return data;
