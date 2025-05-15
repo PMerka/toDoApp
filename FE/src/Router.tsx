@@ -1,14 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
-import { useGetUserQuery } from "./hooks/useGetUserQuery";
 import MainLayout from "./layouts/MainLayout/MainLayout";
 import { routes } from "./pages/routes";
 import Logout from "./pages/Logout/Logout";
 
 function App() {
-  const userQuery = useGetUserQuery();
-
   return (
     <>
       <BrowserRouter>

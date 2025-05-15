@@ -1,5 +1,4 @@
-import { Link, Outlet } from "react-router";
-import { routes } from "../../pages/routes";
+import { Outlet } from "react-router";
 import Navbar from "src/sharedComponents/Navbar";
 
 const MainLayout = () => {
