@@ -17,6 +17,11 @@ const setupSwagger = require("./swagger");
 app.use(express.json(), cors());
 setupSwagger(app);
 
+app.get("/", (req, res) => {
+  res.send(
+    "Welcome to the ToDo App API. Use /api-docs to see the documentation."
+  );
+});
 app.use("/auth", authRoutes);
 app.use("/todos", todoRoutes);
 

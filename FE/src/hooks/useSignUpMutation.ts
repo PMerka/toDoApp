@@ -4,25 +4,34 @@ import { PATHS } from "./paths";
 import { useNavigate } from "react-router";
 import { routes } from "src/pages/routes";
 
-export interface LoginArgs {
+export interface SignUpArgs {
   email?: string;
   password?: string;
 }
 
-const login = async (args: LoginArgs) => {
+const signUp = async (args: SignUpArgs) => {
+  const signUpResp = await axiosClient.post(PATHS.auth.signUp, args);
+
+  if (signUpResp.status !== 200) {
+    const data = await signUpResp?.data;
+    throw new Error(data?.response?.message || "Sign up failed");
+  }
+
   const resp = await axiosClient.post(PATHS.auth.login, args);
   const data = await resp?.data;
   setAxiosToken(data?.token);
-
   return data;
 };
 
-export const useLoginMutation = () => {
+export const useSignUpMutation = () => {
   const navigate = useNavigate();
   const mutation = useMutation({
-    mutationFn: (args: LoginArgs) => login(args),
+    mutationFn: (args: SignUpArgs) => signUp(args),
     onSuccess: () => {
       navigate(routes.home);
+    },
+    onError: (error: Error) => {
+      console.error("Sign up error:", error?.message);
     },
   });
 

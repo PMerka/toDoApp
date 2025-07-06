@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import BlueButton from "../BlueButton";
-import { routes } from "src/pages/routes";
 
 interface LoginFormValues {
   email: string;
@@ -8,7 +7,7 @@ interface LoginFormValues {
 }
 
 interface LoginFormProps {
-  onLoginSubmit: (data: LoginFormValues) => void;
+  onSignUpSubmit: (data: LoginFormValues) => void;
 }
 
 const loginFormDefaultValues = {
@@ -16,7 +15,7 @@ const loginFormDefaultValues = {
   password: "",
 };
 
-const LoginForm = ({ onLoginSubmit }: LoginFormProps) => {
+const SignUpForm = ({ onSignUpSubmit }: LoginFormProps) => {
   const { register, handleSubmit } = useForm({
     defaultValues: loginFormDefaultValues,
   });
@@ -24,12 +23,12 @@ const LoginForm = ({ onLoginSubmit }: LoginFormProps) => {
   return (
     <div className="bg-white p-8 rounded-2xl shadow-md w-full max-w-md">
       <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-        Login to Your Account
+        Create an Account
       </h2>
       <form
         className="space-y-5"
         onSubmit={handleSubmit((data) => {
-          onLoginSubmit(data);
+          onSignUpSubmit(data);
         })}
       >
         <div>
@@ -64,17 +63,10 @@ const LoginForm = ({ onLoginSubmit }: LoginFormProps) => {
           />
         </div>
 
-        <BlueButton>Login</BlueButton>
+        <BlueButton>Create account</BlueButton>
       </form>
-
-      <p className="mt-6 text-sm text-center text-gray-600">
-        Don’t have an account?{" "}
-        <a href={routes.signUp} className="text-blue-600 hover:underline">
-          Sign up
-        </a>
-      </p>
     </div>
   );
 };
 
-export default LoginForm;
+export default SignUpForm;
