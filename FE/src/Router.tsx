@@ -4,6 +4,7 @@ import Login from "./pages/Login/Login";
 import MainLayout from "./layouts/MainLayout/MainLayout";
 import { routes } from "./pages/routes";
 import Logout from "./pages/Logout/Logout";
+import AuthRequired from "./layouts/AuthRequired/AuthRequired";
 
 function App() {
   return (
@@ -11,7 +12,14 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MainLayout />}>
-            <Route index element={<Home />} />
+            <Route
+              index
+              element={
+                <AuthRequired>
+                  <Home />
+                </AuthRequired>
+              }
+            />
             <Route path={routes.login} element={<Login />} />
             <Route path={routes.logout} element={<Logout />} />
           </Route>

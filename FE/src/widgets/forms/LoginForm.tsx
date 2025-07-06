@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import BlueButton from "../BlueButton";
 
 interface LoginFormValues {
   email: string;
@@ -62,12 +63,7 @@ const LoginForm = ({ onLoginSubmit }: LoginFormProps) => {
           />
         </div>
 
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition"
-        >
-          Login
-        </button>
+        <BlueButton>Login</BlueButton>
       </form>
 
       <p className="mt-6 text-sm text-center text-gray-600">
